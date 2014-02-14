@@ -1,11 +1,14 @@
 ENV["RACK_ENV"] = "test"
 require './app/chitter'
-# require 'capybara/rspec'
+require 'capybara/rspec'
 require 'database_cleaner'
+require 'sinatra'
+require 'rack/test'
 
-# Capybara.app = Chitter
+Capybara.app = Chitter
 
 RSpec.configure do |config|
+
   config.treat_symbols_as_metadata_keys_with_true_values = true
   config.run_all_when_everything_filtered = true
   config.filter_run :focus

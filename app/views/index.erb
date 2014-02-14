@@ -1,1 +1,12 @@
 <h1>Welcome to Chitter</h1>
+<div id="new_peep">
+<form method="post" action="/posts" >
+  <input name ="peep" type="text">
+  <input type="submit" value="overshare" class= "button">
+</form>
+<ul>
+  <% @posts.each do |post|%>
+  <li><%=post.body%></li>
+  <%end%>
+</div>
+</ul>
