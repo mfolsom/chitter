@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'data_mapper'
+require 'dm-timestamps'
 require_relative 'chitter'
 
 env = ENV["RACK_ENV"] || "development"

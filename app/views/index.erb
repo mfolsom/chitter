@@ -7,6 +7,7 @@
 <ul>
   <% @posts.each do |post|%>
   <li><%=post.body%></li>
+  <li>Posted At: <%=post.created_at.strftime("%a %b %e %T %Y")%></li>
   <%end%>
 </div>
 </ul>
