@@ -5,6 +5,8 @@ Dir.glob(File.join(File.dirname(__FILE__), 'models', '*.rb'), &method(:require))
 
 class Chitter < Sinatra::Base
 # set :views, File.join(File.dirname(__FILE__), '../views')
+set :public_folder, File.join(File.dirname(__FILE__),'..', 'public')
+
   get '/' do
     @posts = Post.all
     erb :index
