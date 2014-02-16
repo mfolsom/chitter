@@ -5,6 +5,12 @@
   <link rel="stylesheet" type="text/css" href="/css/application.css">  
 </head>
 <body>
+  <header>
+    <a name="Sign up" href="/users/new">Sign up now!</a>
+  </header>
+  <% if current_user %>
+    Welcome, <%= current_user.name %>
+  <% end %>
   <%= yield %>
 </body>
 </html>
