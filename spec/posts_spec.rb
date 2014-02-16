@@ -22,8 +22,5 @@ describe Post do
   it 'has a timestamp' do
     expect(peep).to respond_to :created_at
   end
- 
-  # it 'has an author' do
-  #   expect(peep).to respond_to :user
-  # end
+
 end

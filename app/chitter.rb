@@ -1,11 +1,12 @@
 require 'sinatra/base'
 require 'data_mapper'
 require_relative './db_config'
-Dir.glob(File.join(File.dirname(__FILE__), 'models', '*.rb'), &method(:require))
+
 
 class Chitter < Sinatra::Base
 # set :views, File.join(File.dirname(__FILE__), '../views')
 set :public_folder, File.join(File.dirname(__FILE__),'..', 'public')
+Dir.glob(File.join(File.dirname(__FILE__), 'models', '*.rb'), &method(:require))
 
   get '/' do
     @posts = Post.all

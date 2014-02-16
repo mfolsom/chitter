@@ -4,5 +4,5 @@ class Post
   property :id, Serial
   property :body, Text
   property :created_at, DateTime
-  
+
 end
