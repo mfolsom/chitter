@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'data_mapper'
+require 'rack-flash'
 require_relative './db_config'
 
 
@@ -9,6 +10,7 @@ set :public_folder, File.join(File.dirname(__FILE__),'..', 'public')
 Dir.glob(File.join(File.dirname(__FILE__), 'models', '*.rb'), &method(:require))
 enable :sessions
 set :session_secret, 'carpe diem'
+use Rack::Flash
 
   get '/' do
     @posts = Post.all
@@ -22,17 +24,24 @@ set :session_secret, 'carpe diem'
   end
 
   get '/users/new' do
+    @user = User.new
     erb :"users/new"
   end
 
   post '/users' do
-    user = User.create(:name => params[:name],
-                :username => [:username],
+    @user = User.new(:name => params[:name],
+                :username => params[:username],
                 :email => params[:email], 
                 :password => params[:password], 
-                :password_confirmation =>[:password_confirmation])
-    session[:user_id] = user.id
-    redirect to('/')
+                :password_confirmation => params[:password_confirmation])
+
+    if @user.save
+        session[:user_id] = @user.id
+        redirect to('/')
+    else
+        flash.now[:errors] = @user.errors.full_messages
+        erb :"users/new"
+    end
 end
 
 helpers do
