@@ -7,5 +7,5 @@ I want to log in
 Scenario: new user
 
 Given I am on the homepage
-When I log in
+When I log in as an existing user
 Then I should see "Welcome, Barney Rubble"

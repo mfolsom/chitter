@@ -8,6 +8,14 @@
   <header>
     <a name="Sign up" href="/users/new">Sign up now!</a>
   </header>
+  <% if flash[:errors] && !flash[:errors].empty? %>
+  Sorry, there were the following problems with the form:  
+  <ul id="error">
+    <% flash[:errors].each do |error| %>
+      <li><%= error %> </li>
+    <% end %>
+  </ul>
+<% end %>
   <% if flash[:notice] %>
         <div id="notice"><%= flash[:notice] %></div>
   <% end %>

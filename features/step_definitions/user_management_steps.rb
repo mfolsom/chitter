@@ -36,8 +36,11 @@ When(/^I sign up with a username that has already been taken$/) do
   click_button('Go')
 end
 
-When(/^I log in$/) do
-  pending # express the regexp above with the code you wish you had
+When(/^I log in as an existing user$/) do
+  visit('sessions/new')
+  fill_in :username, :with => 'brubble'
+  fill_in :password, :with => 'yippee'
+  click_button('Sign in')
 end
 
 Then(/^I should see an password error message$/) do
@@ -51,6 +54,10 @@ end
 
 Then(/^I should see a username error message$/) do
   expect(page).to have_content("Sorry that username already exists!")
+end
+
+Then(/^I should see "Welcome, Barney Rubble”$/) do
+  expect(page).to have_content("Welcome, Barney Rubble")
 end
 
 def sign_up(name = 'Barney Rubble',
