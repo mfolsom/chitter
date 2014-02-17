@@ -11,6 +11,7 @@ Dir.glob(File.join(File.dirname(__FILE__), 'models', '*.rb'), &method(:require))
 enable :sessions
 set :session_secret, 'carpe diem'
 use Rack::Flash
+use Rack::MethodOverride
 
   get '/' do
     @posts = Post.all
@@ -59,6 +60,12 @@ use Rack::Flash
           erb :"sessions/new"
         end
    end
+
+  delete '/sessions' do
+    flash[:notice] ="Goodbye!" 
+    session[:user_id] = nil
+    redirect to('/')
+  end
 
 helpers do
 

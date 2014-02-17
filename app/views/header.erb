@@ -1,3 +1,19 @@
   <header>
-    <a href="/users/new"> Sign up</a>
-  </header>
+    <div id="user-links">    
+    <% if current_user %>
+      <span id="welcome-message">
+        Welcome, <%= current_user.name %>  
+      </span>
+    
+      <form id="sign-out" method="post" action="/sessions">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Sign out" class='button'>
+      </form>
+    <% else %>
+      <a name="Sign up" href="/users/new">Sign up now!</a>
+      <a href='/sessions/new' id='sign-in' class='button'>Sign in</a>      
+    <% end %>
+
+  </div>
+</header>
+ 

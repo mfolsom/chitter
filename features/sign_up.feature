@@ -27,3 +27,9 @@ Scenario: logging in
 Given I am on the homepage
 When I log in as an existing user
 Then I should see "Welcome, Barney Rubble”
+
+Scenario: logging out
+
+Given I am on the homepage
+When I log out
+Then I should see "Goodbye!"

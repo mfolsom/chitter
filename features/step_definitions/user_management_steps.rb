@@ -41,6 +41,15 @@ When(/^I log in as an existing user$/) do
   fill_in :username, :with => 'brubble'
   fill_in :password, :with => 'yippee'
   click_button('Sign in')
+  expect(page).to have_content("Welcome, Barney Rubble")
+end
+
+When(/^I log out$/) do
+  visit('sessions/new')
+  fill_in :username, :with => 'brubble'
+  fill_in :password, :with => 'yippee'
+  click_button('Sign in')
+  click_button('Log out')
 end
 
 Then(/^I should see an password error message$/) do
@@ -72,5 +81,12 @@ def sign_up(name = 'Barney Rubble',
   fill_in :password, :with => password
   fill_in :password_confirmation, :with => password_confirmation
   click_button('Go')
+end
+
+def login(username = 'brubble', password = 'yippee')
+  visit('sessions/new')
+  fill_in :username, :with => username
+  fill_in :password, :with => password
+  click_button('Sign in')
 end
 
